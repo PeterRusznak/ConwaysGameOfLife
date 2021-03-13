@@ -30,13 +30,19 @@ function App() {
     if (networkId !== 4) {
       window.alert('Please switch network to the Rinkeby and refresh the page')
     }
-    const contract_address = '0x87bb03abdF7F3263C933af46D2849E7158D0aC00';
-    const deployedContract = new web3.eth.Contract(Game.abi, contract_address);
-    setGameContract(deployedContract);
-    const accounts = await web3.eth.getAccounts();
-    setAccount(accounts[0])
-    const bal = await web3.eth.getBalance(accounts[0]);
-    setBalance(bal);
+    const networkData = Game.networks[networkId];
+    if (networkData) {
+      const contract_address = networkData.address;
+      //const contract_address = '0x87bb03abdF7F3263C933af46D2849E7158D0aC00';
+      const deployedContract = new web3.eth.Contract(Game.abi, contract_address);
+      setGameContract(deployedContract);
+      const accounts = await web3.eth.getAccounts();
+      setAccount(accounts[0])
+      const bal = await web3.eth.getBalance(accounts[0]);
+      setBalance(bal);
+    } else {
+      alert("Wrong NETWORK")
+    }
   }
 
   const getRandom = () => {
