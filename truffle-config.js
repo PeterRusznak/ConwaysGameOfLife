@@ -1,5 +1,3 @@
-require('babel-register');
-require('babel-polyfill');
 var HDWalletProvider = require("truffle-hdwallet-provider");
 
 const mnemonic = "apple banana whatewer here comes your Metamask mnemonic";
